@@ -1,6 +1,12 @@
+import datetime
+from datetime import datetime
+
 from django.shortcuts import render
 from django.http import HttpResponse
 from django import forms
+
+import smtplib
+from email.mime.text import MIMEText
 
 import psycopg2
 from psycopg2.errors import SerializationFailure
@@ -12,8 +18,6 @@ from hello.forms import InputForm
 # Create your views here.
 def index(request):
     # return HttpResponse('Hello from Python!')
-   
-
     return render(request, "index.html")
 
 def success(request):
@@ -52,8 +56,20 @@ def get_input(request):
             obj.party  = form.cleaned_data['time_spent_partying_pre_covid']
             #finally save the object in db
             obj.save()
+
             # redirect to a new URL:
-            return render(request, "success.html")
+            #request.POST = request.GET.POST()
+            curr_email = request.POST['email']
+            user_info = {}
+            for user in Users.objects.all():
+                if user.email != None and user.email != curr_email:
+                    user_info['name'] = user.name
+                    user_info['email'] = user.email
+                    user_info['major'] = user.major
+                    user_info['age'] = user.age
+                    return render(request, "success.html", {"user_info": user_info})
+
+            return render(request, "successEmpty.html")
 
     # if a GET (or any other method) we'll create a blank form
     else:

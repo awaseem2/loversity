@@ -24,6 +24,7 @@ urlpatterns = [
     path("db/", hello.views.db, name="db"),
     #url('submit/', ListView.as_view(queryset=Users.objects.all(), template_name = 'submit.html')),
     path("success/", hello.views.get_input, name="submit/success"),
+    path("successEmpty/", hello.views.get_input, name="submit/successEmpty"),
     path("submit/", hello.views.get_input, name="submit"),
     path("admin/", admin.site.urls),
 ]
