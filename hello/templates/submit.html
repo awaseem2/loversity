@@ -25,17 +25,6 @@
 
 
     <h2>submit form</h2>
-    
-    <!-- {% for user_info in user_infos %}
-            {{ user_info.name }}
-            {{ user_info.major }}
-    {% endfor %} -->
-
-    <!-- <form action="success/" method="post">
-        <label for="input_name">Name: </label>
-            <input id="input_name" type="text" name="input_name">
-        <input type="submit" value="OK">
-    </form> -->
 
     <form action="/success/" method="post">
         {% csrf_token %}
