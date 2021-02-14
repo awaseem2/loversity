@@ -23,6 +23,7 @@ urlpatterns = [
     path("", hello.views.index, name="index"),
     path("db/", hello.views.db, name="db"),
     #url('submit/', ListView.as_view(queryset=Users.objects.all(), template_name = 'submit.html')),
-    path("submit/", hello.views.submit, name="submit"),
+    path("success/", hello.views.get_input, name="submit/success"),
+    path("submit/", hello.views.get_input, name="submit"),
     path("admin/", admin.site.urls)
 ]

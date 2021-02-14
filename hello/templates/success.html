@@ -10,7 +10,7 @@
           <li>
             <a href="/"><span class="glyphicon glyphicon-home"></span>  Home</a>
           </li>
-          <li class="active">
+          <li>
             <a href="/submit/"><span class="glyphicon glyphicon-list"></span>  Submit</a>
           </li>
         </ul>
@@ -21,29 +21,18 @@
         </ul>
       </div>
     </nav>
-  <div class="container">
 
 
-    <h2>submit form</h2>
-    
-    <!-- {% for user_info in user_infos %}
-            {{ user_info.name }}
-            {{ user_info.major }}
-    {% endfor %} -->
+<br/>
+<br/>
 
-    <!-- <form action="success/" method="post">
-        <label for="input_name">Name: </label>
-            <input id="input_name" type="text" name="input_name">
-        <input type="submit" value="OK">
-    </form> -->
 
-    <form action="/success/" method="post">
-        {% csrf_token %}
-        {{ form }}
-        <input type="submit" value="Submit" />
-    </form>
-    
+<img class="success-image" src="https://static01.nyt.com/images/2019/09/25/fashion/loveletter/loveletter-superJumbo-v2.png" alt="love" width="500" height="auto">
 
-</div>
+<br/>
+<br/>
+<br/>
+
+<div class="success"><h1>Thank you! We have received your submission.</h1></div>
 
 {% endblock %}

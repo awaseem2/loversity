@@ -3,20 +3,69 @@
 
 {% block content %}
 
+<body>
+    <nav class="navbar navbar-default navbar-static-top navbar-inverse">
+      <div class="container">
+        <ul class="nav navbar-nav">
+          <li class="active">
+            <a href="/"><span class="glyphicon glyphicon-home"></span>  Home</a>
+          </li>
+          <li>
+            <a href="/submit/"><span class="glyphicon glyphicon-list"></span>  Submit</a>
+          </li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li class="navbar-right">
+            <a href="https://github.com/awaseem2/loversity"><span class="glyphicon glyphicon-console"></span> Check Out On Github!</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <header class="w3-display-container w3-content w3-wide" style="width:100%;" id="home">
+        <img class="w3-image" src="http://static.oprah.com/2020/02/202002-omag-love-languages-949x534.jpg" alt="love" width="1500" height="800">
+        <div class="w3-display-middle w3-margin-top w3-center">
+          <h1 class="w3-xxlarge w3-text-white"><span class="w3-padding w3-black w3-opacity-min"><b>L</b></span> <span class="w3-hide-small w3-text-light-grey">oversity</span></h1>
+        </div>
+      </header>
+
+      
+
 <div class="container">
 
+    <br/>
+    <br/>
+    <br/>
 
-    <h2>Page View Report</h2>
+    <h2>Welcome!</h2>
     
+    <br/>
+    <br/>
+
     
-    <ul>
-    
-        {% for user_info in user_infos %}
-            <li>{{ user_info.Name }}</li>
-            <li>{{ user_info.Major }}</li>
-        {% endfor %}
-    
-    </ul>
+    <p>
+        Are you tired of swiping on cherry-picked photos on dating apps? Getting a match only to get no reply? Unsure of how to find love in a pandemic?
+        Then you've come to the right place!
+    </p>
+    <p>
+        Loversity is an experimental exploration into the world of algorithmic dating. Say goodbye to superficial height requirements or stress over choosing
+        the right bio. Loversity aims to help you find a perfect match based on your specific compatibility and needs.
+    </p>
+
+    <br/>
+    <br/>
+    <br/>
+
+
+    <p><button onclick="location.href = '/submit/';" class="w3-button w3-light-grey w3-block">Click here to find your match!</button></p>
+
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+
     
 </div>
 
