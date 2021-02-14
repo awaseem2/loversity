@@ -22,12 +22,12 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "CHANGE_ME!!!! (P.S. the SECRET_KEY environment variable will be used, if set, instead)."
+SECRET_KEY = os.environ['SECRET_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['0.0.0.0']
 
 
 # Application definition
@@ -76,10 +76,25 @@ WSGI_APPLICATION = "gettingstarted.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
 
+# DATABASES = {
+#     "default": {
+#         "ENGINE" : "django.db.backends.sqlite3",
+#         "NAME": os.path.join(BASE_DIR, "db.sqlite3")
+#     }
+# }
+
 DATABASES = {
-    "default": {
-        "ENGINE" : "django.db.backends.sqlite3",
-        "NAME": os.path.join(BASE_DIR, "db.sqlite3")
+    'default': {
+        'ENGINE' : 'django_cockroachdb',
+        'USER' : 'alvina',
+        'PASSWORD': os.environ['DATABASE_PASS'], # NOTE: might not work when i deploy?
+        'HOST' : 'free-tier.gcp-us-central1.cockroachlabs.cloud',
+        'PORT' : 26257,
+        'NAME' : 'loversity-681.defaultdb',
+        'OPTIONS': {
+            'sslmode': 'verify-full',
+            'sslrootcert': 'certs/cc-ca.crt'
+        },
     }
 }
 
@@ -115,5 +130,9 @@ USE_TZ = True
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = "/static/"
+
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'gettingstarted\\static')
+]
 
 django_heroku.settings(locals())
