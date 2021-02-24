@@ -132,6 +132,8 @@ def submit(request):
 
     context_object_name = 'user_infos'
 
+def is_new_email(email):
+    return not Users.objects.filter(email=email).exists()
     
 
 def get_input(request):
@@ -140,7 +142,8 @@ def get_input(request):
         # create a form instance and populate it with data from the request:
         form = InputForm(request.POST)
         # check whether it's valid:
-        if form.is_valid():
+        valid_email = False
+        if form.is_valid() and valid_email:
             # process the data in form.cleaned_data as required
             cleaned_form = {}
             cleaned_form['name'] = form.cleaned_data['name']
@@ -157,21 +160,24 @@ def get_input(request):
             cleaned_form['social'] = form.cleaned_data['time_spent_in_social_activities']
             cleaned_form['party'] = form.cleaned_data['time_spent_partying_pre_covid']
 
-            save_form(cleaned_form)
+            valid_email = is_new_email(cleaned_form['email'])
+            if valid_email:
+                save_form(cleaned_form)
 
-            # redirect to a new URL:
-            #request.POST = request.GET.POST()
-            user_info = get_best_match(cleaned_form)
-            if len(user_info) != 0:
-                return render(request, "success.html", {"user_info": user_info})
+                # tell user about their match
+                user_info = get_best_match(cleaned_form)
+                if len(user_info) != 0:
+                    return render(request, "success.html", {"user_info": user_info})
 
-            return render(request, "successEmpty.html")
+                # no best match found
+                return render(request, "successEmpty.html")
 
     # if a GET (or any other method) we'll create a blank form
     else:
         form = InputForm()
 
-    return render(request, 'submit.html', {'form': form})
+    error = '' if valid_email else 'Error: email already in use'
+    return render(request, 'submit.html', {'form': form, 'error': error})
 
 def db(request):
 
