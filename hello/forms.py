@@ -9,7 +9,7 @@ class InputForm(forms.Form):
     major = forms.CharField(max_length=140)
     age = forms.IntegerField(max_value=120, min_value=18)
     gender = forms.ChoiceField(widget=forms.RadioSelect, choices=gender_choices)
-    attractedTo = forms.MultipleChoiceField(
+    attracted_to = forms.MultipleChoiceField(
                                        widget=forms.CheckboxSelectMultiple,
                                        choices=gender_choices)
     distance_from_campus = forms.ChoiceField(widget=forms.RadioSelect, choices=distance_choices)

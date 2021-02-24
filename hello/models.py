@@ -19,6 +19,7 @@ class Users(models.Model):
     sharereligion = models.CharField(max_length=140)
     social = models.CharField(max_length=140)
     party = models.CharField(max_length=140)
+    pastmatches = models.CharField(max_length=64000)
     
     def __str__(self):
         return self.name

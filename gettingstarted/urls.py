@@ -26,5 +26,5 @@ urlpatterns = [
     path("success/", hello.views.get_input, name="submit/success"),
     path("successEmpty/", hello.views.get_input, name="submit/successEmpty"),
     path("submit/", hello.views.get_input, name="submit"),
-    path("admin/", admin.site.urls),
+    path("admin/", admin.site.urls)
 ]
